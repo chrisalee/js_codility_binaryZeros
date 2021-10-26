@@ -40,3 +40,30 @@ findConsecutiveZeros(32); // 10000010001 //=> 5
 findConsecutiveZeros(6291457); // 11000000000000000000001 //=> 20
 findConsecutiveZeros(1376796946); // 1010010000100000100000100010010 //=> 5
 findConsecutiveZeros(1610612737); // 1100000000000000000000000000001 //=> 28
+
+
+///////////////////////////////////////////////////////////////////////////
+const solution = (N) => {
+    let number = N;
+    let binary = '';
+    let currentCount = -1;
+    let maxCount = 0;
+    
+    while(number > 0) {
+        let digit = number % 2;
+        
+        if(digit === 1) {
+            if(currentCount > maxCount) {
+                maxCount = currentCount;
+            }
+            currentCount = 0;
+        } else if(currentCount >= 0) {
+            currentCount++;
+        }
+        
+        binary = '' + digit + binary;
+        number = parseInt(number / 2);
+    }
+        
+    return maxCount;
+}
